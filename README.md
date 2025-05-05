@@ -1,7 +1,4 @@
-Of course!
-I'll create a **professional and detailed README.md** file for your Flask project **"Word Counter & Visualizer"**, including project introduction, setup guide, features, technologies used, screenshots (I'll show how you should place an image), and license information.
 
----
 
 # 📄 README.md
 
@@ -30,12 +27,14 @@ This web app allows users to **analyze text**, **count unique words**, and **vis
 ## 🖼️ Screenshots
 
 ### 🔒 Login Page
-![Login Page](https://github.com/user-attachments/assets/fdefd26a-fe2b-4248-93f6-808c10771954)
+
+
+![Image](https://github.com/user-attachments/assets/fdefd26a-fe2b-4248-93f6-808c10771954)
 
 
 
 ### 🏠 Home / Text Analysis Page
-![Home Page](https://github.com/user-attachments/assets/8d30aa54-4f82-4616-a468-509152c4605b)
+![image](https://github.com/user-attachments/assets/8d30aa54-4f82-4616-a468-509152c4605b)
 
 
 
