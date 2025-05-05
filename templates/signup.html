@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up | Word Counter 🎯</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Create Account 📝</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
+        <input type="text" name="username" placeholder="Choose Username" required><br>
+        <input type="password" name="password" placeholder="Choose Password" required><br>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+        <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a> 🎯</p>
+</div>
+
+</body>
+</html>
