@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Counter & Visualizer 🎯</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="logout-section">
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout 🔓</a>
+    </div>
+
+    <div class="hero-section">
+        <h1 class="hero-title">🚀 Welcome to Word Counter & Visualizer</h1>
+        <p class="hero-subtitle">Analyze your text smarter with stunning visual insights. 🎨</p>
+        <a href="#analyze" class="hero-button">Get Started ➡️</a>
+    </div>
+
+    <section id="analyze" class="main-section">
+        <div class="container">
+            <h2 class="title">Unique Word Counter By:- Ajay Jha 🎯</h2>
+
+            <form method="POST">
+                <textarea name="text_area" placeholder="Paste or write your text here..." required></textarea>
+                <div class="buttons">
+                    <button type="submit" class="btn">Analyze Text</button>
+                    {% if word_count %}
+                    <a href="{{ url_for('download_csv') }}" class="btn download-btn">Download CSV</a>
+                    {% endif %}
+                </div>
+            </form>
+
+            {% if word_count %}
+            <h2 class="subtitle">Total Unique Words: {{ word_count|length }}</h2>
+
+            <div class="chart-wrapper">
+                <div class="chart-container">
+                    <h3>🎂 Pie Chart</h3>
+                    <canvas id="pieChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>📊 Bar Chart</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>🍩 Doughnut Chart</h3>
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+            </div>
+
+            <script>
+                const labels = {{ word_count.keys()|list|tojson }};
+                const dataValues = {{ word_count.values()|list|tojson }};
+
+                new Chart(document.getElementById('pieChart').getContext('2d'), {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: dataValues,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'],
+                        }]
+                    }
+                });
+
+                new Chart(document.getElementById('barChart').getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Word Frequency',
+                            data: dataValues,
+                            backgroundColor: '#4BC0C0'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                        }
+                    }
+                });
+
+                new Chart(document.getElementById('doughnutChart').getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: dataValues,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'],
+                        }]
+                    }
+                });
+            </script>
+            {% endif %}
+        </div>
+    </section>
+
+    <footer>
+        <p>Made with ❤️ by Ajay Kumar Jha | © 2025</p>
+    </footer>
+
+</body>
+</html>
